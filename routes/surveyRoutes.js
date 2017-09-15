@@ -23,13 +23,14 @@ module.exports = app => {
 		const mailer = new Mailer(survey, surveyTemplate(survey));
 		mailer
 			.send()
-			.then(() => survey.send())
+			.then(() => survey.save())
 			.then(() => {
 				req.user.credits -= 1;
-				req.user.save();
+				console.log(req.user);
+				return req.user.save();
 			})
 			.then(user => res.send(user))
-			.catch(err => res.status(422).send(err));
-			//.catch(err => res.json(err));
+			//.catch(err => res.status(422).send(err));
+			.catch(err => res.json(err));
 	});
 };
