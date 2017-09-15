@@ -30,5 +30,6 @@ module.exports = app => {
 			})
 			.then(user => res.send(user))
 			.catch(err => res.status(422).send(err));
+			//.catch(err => res.json(err));
 	});
 };

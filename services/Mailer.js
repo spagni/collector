@@ -46,7 +46,7 @@ class Mailer extends helper.Mail {
         body: this.toJSON()
       });
 
-      this.sgApi.API(request).then(response => resolve(response));
+      this.sgApi.API(request).then(response => resolve(response)).catch(err => reject(err));
     });
   }
 }
